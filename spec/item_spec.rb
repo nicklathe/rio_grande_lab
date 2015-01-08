@@ -17,6 +17,11 @@ describe Item do
     it "is assigned a price" do
       expect(@item.price).to eq(1.99)
     end
+    it "is assigned a weight" do
+      expect(@item.weight).to eq(0)
+      @item.weight = 5
+      expect(@item.weight).to eq(5)
+    end
   end
 
   describe "Accessors" do
@@ -37,7 +42,7 @@ describe Item do
       expect(@item.description).to eq("test")
     end    
   end
-
+  #Methods
   describe "Methods" do
     it "should be able to stock" do
       result = @item.stock 5
@@ -53,7 +58,12 @@ describe Item do
       result = @item.sell 3
       expect(result).to eq(true)
       expect(@item.quantity).to eq(2)
-    end    
+    end 
+    it "should set shipping cost" do 
+      @item.weight = 2
+      result = @item.ship_price
+      expect(result).to eq(2.4)
+    end   
   end
 
 end
